@@ -1,17 +1,15 @@
 package com.example.expensetrackerrest.controllers;
 
 import com.example.expensetrackerrest.dto.CategoryDTO;
-import com.example.expensetrackerrest.entities.Category;
 import com.example.expensetrackerrest.response.Response;
 import com.example.expensetrackerrest.services.CategoryService;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.function.EntityResponse;
 
-import javax.websocket.server.PathParam;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class CategoryController {
@@ -25,16 +23,14 @@ public class CategoryController {
     @GetMapping("categories")
     public ResponseEntity<Response> getCategories() {
         List<CategoryDTO> categories = service.fetchCategories();
-        Response response = new Response();
-        response.setData(categories);
+        Response response = makeResponse("categories", categories);
         return ResponseEntity.ok(response);
     }
 
     @PostMapping("categories")
     public ResponseEntity<Response> postCategory(@RequestBody CategoryDTO category) {
         Integer key = service.insertCategory(category);
-        Response response = new Response();
-        response.setData(key);
+        Response response = makeResponse("categoryKey", key);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
@@ -42,8 +38,15 @@ public class CategoryController {
     public ResponseEntity<Response> deleteCategory(@PathVariable("key") Integer key) {
         CategoryDTO toDelete = service.fetchByKey(key);
         service.deleteCategory(key);
-        Response response = new Response();
-        response.setData(toDelete);
+        Response response = makeResponse("deleted", toDelete);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
+    }
+
+    private Response makeResponse(String fieldName, Object data) {
+        Map<String, Object> m = new HashMap<>();
+        m.put(fieldName, data);
+        Response response = new Response();
+        response.setData(m);
+        return response;
     }
 }
