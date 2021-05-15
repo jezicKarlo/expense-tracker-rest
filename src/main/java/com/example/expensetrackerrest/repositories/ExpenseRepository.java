@@ -8,4 +8,5 @@ import java.util.List;
 public interface ExpenseRepository extends JpaRepository<Expense, Integer> {
 
     List<Expense> findByCategory(Integer key);
+    List<Expense> findByType(Integer key);
 }

@@ -49,4 +49,8 @@ public class ExpenseService {
         return repository.findByCategory(key);
     }
 
+    public List<Expense> fetchByExpenseType(Integer key) {
+        return repository.findByType(key);
+    }
+
 }
