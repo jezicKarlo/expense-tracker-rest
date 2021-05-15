@@ -1,6 +1,5 @@
 package com.example.expensetrackerrest.services;
 
-import com.example.expensetrackerrest.controllers.CategoryController;
 import com.example.expensetrackerrest.converters.CategoryConverter;
 import com.example.expensetrackerrest.dto.CategoryDTO;
 import com.example.expensetrackerrest.entities.Category;

@@ -1,6 +1,5 @@
 package com.example.expensetrackerrest.entities;
 
-import com.example.expensetrackerrest.dto.CategoryDTO;
 import lombok.Data;
 
 import javax.persistence.*;

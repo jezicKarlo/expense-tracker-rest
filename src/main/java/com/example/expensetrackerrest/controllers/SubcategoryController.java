@@ -1,7 +1,6 @@
 package com.example.expensetrackerrest.controllers;
 
 import com.example.expensetrackerrest.dto.SubcategoryDTO;
-import com.example.expensetrackerrest.entities.Subcategory;
 import com.example.expensetrackerrest.response.Response;
 import com.example.expensetrackerrest.services.SubcategoryService;
 import org.springframework.http.HttpStatus;

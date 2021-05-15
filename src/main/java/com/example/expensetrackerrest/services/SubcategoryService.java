@@ -1,11 +1,9 @@
 package com.example.expensetrackerrest.services;
 
 import com.example.expensetrackerrest.converters.SubcategoryConverter;
-import com.example.expensetrackerrest.dto.CategoryDTO;
 import com.example.expensetrackerrest.dto.SubcategoryDTO;
 import com.example.expensetrackerrest.entities.Subcategory;
 import com.example.expensetrackerrest.repositories.SubcategoryRepository;
-import jdk.dynalink.linker.LinkerServices;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
