@@ -1,5 +1,6 @@
 package com.example.expensetrackerrest.entities;
 
+import com.example.expensetrackerrest.dto.CategoryDTO;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -14,4 +15,8 @@ public class Category {
     private Integer primaryKey;
 
     private String categoryName;
+
+    public void editCategory(CategoryDTO edit) {
+        this.categoryName = (edit.getName());
+    }
 }

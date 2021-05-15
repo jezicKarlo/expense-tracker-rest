@@ -19,7 +19,7 @@ public class CategoryService {
     }
 
     public List<CategoryDTO> fetchCategories() {
-        List<Category> categories = repository.getAllBy();
+        List<Category> categories = repository.findAll();
         return CategoryConverter.fromCategories(categories);
     }
 
@@ -36,5 +36,12 @@ public class CategoryService {
 
     public void deleteCategory(Integer key) {
         repository.deleteById(key);
+    }
+
+    public CategoryDTO editCategory(Integer key, CategoryDTO edit) {
+        Category toEdit = repository.getOne(key);
+        toEdit.editCategory(edit);
+        repository.save(toEdit);
+        return CategoryConverter.fromCategory(toEdit);
     }
 }

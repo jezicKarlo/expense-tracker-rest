@@ -22,6 +22,7 @@ public class CategoryConverter {
     public CategoryDTO fromCategory(Category category) {
         CategoryDTO dto = new CategoryDTO();
         dto.setName(category.getCategoryName());
+        dto.setId(category.getPrimaryKey());
         return dto;
     }
 

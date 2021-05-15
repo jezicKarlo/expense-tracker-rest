@@ -42,6 +42,14 @@ public class CategoryController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
     }
 
+    @PutMapping("categories/{key}")
+    public ResponseEntity<Response> editCategory(@PathVariable("key") Integer key,
+                                                 @RequestBody CategoryDTO body) {
+        CategoryDTO dto = service.editCategory(key, body);
+        Response response = makeResponse("category", dto);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
+    }
+
     private Response makeResponse(String fieldName, Object data) {
         Map<String, Object> m = new HashMap<>();
         m.put(fieldName, data);
