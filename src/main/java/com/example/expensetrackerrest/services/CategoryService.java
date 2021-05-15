@@ -38,8 +38,9 @@ public class CategoryService {
         repository.deleteById(key);
     }
 
-    public CategoryDTO editCategory(Integer key, CategoryDTO edit) {
+    public CategoryDTO editCategory(Integer key, CategoryDTO editReq) {
         Category toEdit = repository.getOne(key);
+        Category edit = CategoryConverter.fromDto(editReq);
         toEdit.editCategory(edit);
         repository.save(toEdit);
         return CategoryConverter.fromCategory(toEdit);

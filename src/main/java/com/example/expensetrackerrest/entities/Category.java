@@ -16,7 +16,7 @@ public class Category {
 
     private String categoryName;
 
-    public void editCategory(CategoryDTO edit) {
-        this.categoryName = (edit.getName());
+    public void editCategory(Category edit) {
+        this.categoryName = (edit.getCategoryName());
     }
 }
