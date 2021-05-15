@@ -36,10 +36,7 @@ public class CategoryStatisticService {
         statistics.setSince(LocalDate.parse(since));
         statistics.setUntil(LocalDate.parse(until));
         statistics.setCategory(key);
-        double sum = 0;
-        for (Expense expense : expensesInRange) {
-            sum += expense.getValue();
-        }
+        double sum = ServiceUtils.sumExpenses(expensesInRange);
         statistics.setValue(sum);
         return repository.save(statistics);
     }

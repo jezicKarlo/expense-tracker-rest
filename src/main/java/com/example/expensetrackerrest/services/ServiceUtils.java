@@ -19,4 +19,12 @@ public class ServiceUtils {
         }
         return expensesInRange;
     }
+
+    public double sumExpenses(List<Expense> expenses) {
+        double sum = 0;
+        for (Expense expense : expenses) {
+            sum += expense.getValue();
+        }
+        return sum;
+    }
 }
