@@ -45,4 +45,8 @@ public class ExpenseService {
         return ExpenseConverter.fromExpense(toEdit);
     }
 
+    public List<Expense> fetchByCategory(Integer key) {
+        return repository.findByCategory(key);
+    }
+
 }

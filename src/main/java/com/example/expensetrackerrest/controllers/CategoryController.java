@@ -1,8 +1,10 @@
 package com.example.expensetrackerrest.controllers;
 
 import com.example.expensetrackerrest.dto.CategoryDTO;
+import com.example.expensetrackerrest.entities.CategoryStatistics;
 import com.example.expensetrackerrest.response.Response;
 import com.example.expensetrackerrest.services.CategoryService;
+import com.example.expensetrackerrest.services.CategoryStatisticsService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,9 +16,11 @@ import java.util.List;
 public class CategoryController {
 
     private final CategoryService service;
+    private final CategoryStatisticsService statisticsService;
 
-    public CategoryController(CategoryService service) {
+    public CategoryController(CategoryService service, CategoryStatisticsService statisticsService) {
         this.service = service;
+        this.statisticsService = statisticsService;
     }
 
     @GetMapping
@@ -47,5 +51,13 @@ public class CategoryController {
         CategoryDTO dto = service.editCategory(key, body);
         Response response = Response.makeResponse("category", dto);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("{key}/statistics")
+    public ResponseEntity<Response> getStatistics(@PathVariable("key") Integer key,
+                                                  @RequestParam("since") String since,
+                                                  @RequestParam("until") String until) {
+        CategoryStatistics statistics = statisticsService.generateStatistics(key, since, until);
+        return ResponseEntity.ok(Response.makeResponse("categoryStatistics", statistics));
     }
 }
