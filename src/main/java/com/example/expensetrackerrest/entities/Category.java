@@ -13,6 +13,7 @@ public class Category {
     @Column(name = "category_pk")
     private Integer primaryKey;
 
+    @Column(name = "category_name")
     private String categoryName;
 
     public void editCategory(Category edit) {
